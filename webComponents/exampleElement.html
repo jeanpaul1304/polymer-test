@@ -1,0 +1,39 @@
+<!-- Import components -->
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+
+<!-- Text Component -->
+<dom-module id="hello-world">
+    <template>
+        <div class="welcome-text">
+            <h1>Hola <span>{{data}}</span> !!!</h1>
+            <h2>Puedes usar este IDE para <span>{{dataLanguage}}</span></h2>
+        </div>
+        <div class="ctn-buttons">
+            <paper-icon-button icon="polymer" data-language="polymer" style="color:#3f51b5;"></paper-icon-button>
+            <paper-icon-button icon="android" data-language="android" style="color: #a4c639;"></paper-icon-button>
+            <paper-icon-button icon="cloud" data-language="cloud" style="color:#03a9f4;"></paper-icon-button>
+            <paper-icon-button icon="code" data-language="mucho más..." style="color:#cc181e;"></paper-icon-button>
+        </div>
+        <input is="iron-input" value="{{data::input}}" placeholder=":v" class="name-input">
+    </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "hello-world",
+    ready: function() {
+        elem = this;
+        elem.data = "";
+        elem.dataLanguage = "varios propositos";
+        $("paper-icon-button").each(function() {
+            $(this).on("click",function () {
+                $("body").attr("style","color:#fff;background:"+$(this).attr("style").replace("color:",""));
+                elem.dataLanguage = $(this).attr("data-language")
+            });
+        });
+    }
+  });
+</script>
